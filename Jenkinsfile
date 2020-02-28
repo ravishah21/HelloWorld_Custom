@@ -24,6 +24,7 @@ node{
           echo result
           result = $(sh 'docker ps --format {{.Names}} -a |grep helloworld_custom')
           echo result
+          sh 'docker rm helloworld_custom -f'
     }
     stage ('add new container application'){
       sh 'docker run --name helloworld_custom -d --publish 8081:8080  ravishah21/helloworld_custom:v1.0'
