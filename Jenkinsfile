@@ -19,7 +19,18 @@ node{
         sh 'docker push ravishah21/helloworld:v1.0'
     }
     stage ('remove old container'){
-        sh 'docker rm helloworld -f'
+      script{
+          def result
+          echo result
+          result = sh 'docker ps --format {{.Names}} -a |grep helloworld'
+          echo result
+          if (result.isEmpty()) {
+              echo "No helloworld container exists"
+          } else {
+              echo "helloworld container exists"
+              sh 'docker rm helloworld -f'
+          }
+      }
     }
     stage ('add new container application'){
       sh 'docker run --name helloworld -d --publish 8081:8080  ravishah21/helloworld:v1.0'
