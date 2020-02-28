@@ -22,7 +22,7 @@ node{
       script{
           def result
           echo result
-          result = $(sh 'docker ps --format {{.Names}} -a |grep helloworld_custom')
+          sh 'docker ps --format {{.Names}} -a |grep helloworld_custom' > result
           echo result
           sh 'docker rm helloworld_custom -f'
     }
