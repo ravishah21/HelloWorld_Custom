@@ -22,15 +22,8 @@ node{
       script{
           def result
           echo result
-          result = sh 'docker ps --format {{.Names}} -a |grep helloworld_custom'
+          result = $(sh 'docker ps --format {{.Names}} -a |grep helloworld_custom')
           echo result
-          if (result.isEmpty()) {
-              echo "No helloworld_custom container exists"
-          } else {
-              echo "helloworld_custom container exists"
-              sh 'docker rm helloworld_custom -f'
-          }
-      }
     }
     stage ('add new container application'){
       sh 'docker run --name helloworld_custom -d --publish 8081:8080  ravishah21/helloworld_custom:v1.0'
