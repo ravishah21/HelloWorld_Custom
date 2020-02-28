@@ -5,34 +5,34 @@ node{
     }
     stage('GIT Check')
     {
-       git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/RS_XS_KO_2020.git'
+       git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/HelloWorld_Custom.git'
     }
     stage ('Build Docker Images'){
         sh 'echo $PATH'
-        sh  'docker build -t ravishah21/helloworld:v1.0 .'
+        sh  'docker build -t ravishah21/helloworld_custom:v1.0 .'
     }
     stage('Push Docker image'){
        withCredentials([string(credentialsId: 'secret', variable: 'dockersecret')]) {
 
         sh "docker login -u ravishah21 -p ${dockersecret}"
        }
-        sh 'docker push ravishah21/helloworld:v1.0'
+        sh 'docker push ravishah21/helloworld_custom:v1.0'
     }
     stage ('remove old container'){
       script{
           def result
           echo result
-          result = sh 'docker ps --format {{.Names}} -a |grep helloworld'
+          result = sh 'docker ps --format {{.Names}} -a |grep helloworld_custom'
           echo result
           if (result.isEmpty()) {
-              echo "No helloworld container exists"
+              echo "No helloworld_custom container exists"
           } else {
-              echo "helloworld container exists"
-              sh 'docker rm helloworld -f'
+              echo "helloworld_custom container exists"
+              sh 'docker rm helloworld_custom -f'
           }
       }
     }
     stage ('add new container application'){
-      sh 'docker run --name helloworld -d --publish 8081:8080  ravishah21/helloworld:v1.0'
+      sh 'docker run --name helloworld_custom -d --publish 8081:8080  ravishah21/helloworld_custom:v1.0'
     }
 }
