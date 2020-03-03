@@ -21,7 +21,7 @@ node{
     stage ('remove old container'){
         sh 'docker rm helloworld_custom -f'
     }
-    
+
     stage ('add new container application'){
       sh 'docker run --name helloworld_custom -d --publish 8082:8000  ravishah21/helloworld_custom:v1.0'
     }
