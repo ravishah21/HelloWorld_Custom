@@ -20,6 +20,6 @@ node{
     }
 
     stage ('add new container application'){
-      sh 'docker run --name helloworld_custom -d --publish 8081:8000  ravishah21/helloworld_custom:v1.0'
+      sh 'docker run --name helloworld_custom -d --publish 8082:8000  ravishah21/helloworld_custom:v1.0'
     }
 }
