@@ -13,7 +13,7 @@ node{
            git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/HelloWorld_Custom.git'
         }
 
-    /* ***********Work in progress****************
+/* ***********Work in progress****************
         stage('stop old Ngrok process'){
             try {
                 sh label: '', script: 'ps -ef | grep ngrok | grep -v grep | awk \'{print $2}\' | xargs kill'
@@ -25,7 +25,7 @@ node{
         stage('start new Ngrok tunnel'){
             sh label: '', script: './ngrok_run_after_boot.sh'
         }
-    ***********Work in progress**************** */
+***********Work in progress**************** */
 
         notifyBuild('BUILDING DOCKER IMAGE')
         stage ('Build Docker Image'){
@@ -52,11 +52,12 @@ node{
           sh 'docker run --name helloworld_custom -d --publish 8082:5000  ravishah21/helloworld_custom:v1.0'
         }
     }
-/*
+
+/* ***********Work in progress****************
         stage('Email')
           steps{
         }
-*/
+***********Work in progress**************** */
 
     catch (e) {
     // If there was an exception thrown, the build failed
