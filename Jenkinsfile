@@ -8,6 +8,7 @@ node{
        git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/HelloWorld_Custom.git'
     }
 
+/*
     stage('stop old Ngrok process'){
         try {
             sh label: '', script: 'ps -ef | grep ngrok | grep -v grep | awk \'{print $2}\' | xargs kill'
@@ -19,6 +20,7 @@ node{
     stage('start new Ngrok tunnel'){
         sh label: '', script: './ngrok_run_after_boot.sh'
     }
+*/
 
     stage ('Build Docker Images'){
         sh 'echo $PATH'
