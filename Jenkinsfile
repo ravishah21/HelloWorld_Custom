@@ -14,7 +14,6 @@ node{
         }
         catch (exc) {
             echo ' No Ngrok tunnel running'
-            throw
         }
     }
     stage('start new Ngrok tunnel'){
