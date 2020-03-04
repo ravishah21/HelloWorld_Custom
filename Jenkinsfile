@@ -17,11 +17,7 @@ node{
         }
     }
     stage('start new Ngrok tunnel'){
-    sh label: '', script: '''##! /bin/sh
-                          echo "This is start $(pwd)"
-                          ngrok start --all \\
-                          --log=stdout \\
-                          > ./ngrok.log &'''
+        sh label: '', script: './ngrok_run_after_boot.sh'
     }
 
     stage ('Build Docker Images'){
