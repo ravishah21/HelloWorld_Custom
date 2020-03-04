@@ -17,7 +17,8 @@ node{
         }
     }
     stage('start new Ngrok tunnel'){
-        sh label: '', script: 'ngrok_run_after_boot.sh'
+    sh label: '', script: '''cd /home/rshah/Desktop
+                            ./ngrok_run_after_boot.sh'''
     }
 
     stage ('Build Docker Images'){
