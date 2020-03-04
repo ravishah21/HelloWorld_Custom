@@ -12,8 +12,8 @@ node{
         try {
             sh 'ps -ef | grep ngrok | grep -v grep | awk '{print $2}' | xargs kill'
         }
-        catch (exc){
-            echo ' No Ngrok  tunnel running'
+        catch (exc) {
+            echo ' No Ngrok tunnel running'
             throw
         }
     }
