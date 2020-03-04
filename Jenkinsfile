@@ -9,14 +9,9 @@ node{
     }
 
     stage('Initiate Ngrok public endpoint'){
-        script{
-          def pid
-          sh 'pidof ngrok' > pid
-          echo pid
-          sh ' kill -9 $pid'
-          sh 'cd /home/rshah/Desktop/'
-          sh 'ngrok start --all'
-        }
+        sh 'ps -ef | grep ngrok | grep -v grep | awk '{print $2}' | xargs kill'
+        sh 'cd /home/rshah/Desktop/'
+        sh 'ngrok start --all'
     }
 
     stage ('Build Docker Images'){
