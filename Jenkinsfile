@@ -82,7 +82,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
 
   // Send notifications
   slackSend botUser: true,
-  channel: 'jenkinsstream',
+  channel: 'jenkins-stream',
   color: colorCode,
   message: summary,
   tokenCredentialId: 'slack-token'
