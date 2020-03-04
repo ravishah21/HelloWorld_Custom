@@ -82,7 +82,7 @@ def notifyBuild(String buildStatus = 'NEW BUILT INITIATED') {
   def summary = "${subject} (${env.BUILD_URL})"
 
   // Override default values based on build status
-  if (buildStatus == 'STARTED') {
+  if (buildStatus == 'NEW BUILT INITIATED') {
     color = 'YELLOW'
     colorCode = '#FFFF00'
   } else if (buildStatus == 'BUILDING DOCKER IMAGE') {
