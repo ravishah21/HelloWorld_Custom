@@ -43,8 +43,8 @@ node{
 
     stage('Email')
       steps{
-       emailext (to: 'ravi.shah@computacenter.com', replyTo: 'ravishah21@gmail.com', subject: "Email
-       Report from - '${env.HelloWorld_Custom}' ", body: readFile("target/surefire-reports/emailable-report.html"),
+       emailext (to: 'ravi.shah@computacenter.com', replyTo: 'ravishah21@gmail.com', subject: "Email Report from - '${env.HelloWorld_Custom}' ",
+       body: readFile("target/surefire-reports/emailable-report.html"),
        mimeType: 'text/html');
 
       }
