@@ -43,11 +43,12 @@ node{
 
     stage('Email')
       steps{
-       emailext body: 'A Test Email', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-/*
-       emailext (to: 'ravi.shah@computacenter.com', replyTo: 'ravishah21@gmail.com', subject: "Email Report from - '${env.HelloWorld_Custom}' ",
-       body: readFile("target/surefire-reports/emailable-report.html"),
-       mimeType: 'text/html');
-*/
+//       emailext (to: 'ravi.shah@computacenter.com', replyTo: 'ravishah21@gmail.com', subject: "Email Report from - '${env.HelloWorld_Custom}' ",
+//       body: readFile("target/surefire-reports/emailable-report.html"),
+//       mimeType: 'text/html');
+         emailext (to: 'ravi.shah@computacenter.com', replyTo: 'ravishah21@gmail.com', subject: "FAILED : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+         body: '''<p><font size="8" color="red">Build Failure!</font></p>
+         <p>Check console output at &QUOT;<a href='${BUILD_URL}consoleText'>${JOB_NAME} [${BUILD_NUMBER}]</a>&QUOT;</p>
+         ${BUILD_LOG_REGEX, regex="^.*?*****.*?$", linesBefore=0, linesAfter=999, maxMatches=10, showTruncatedLines=false,escapeHtml=false}''',
       }
 }
