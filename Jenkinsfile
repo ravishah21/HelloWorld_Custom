@@ -1,11 +1,13 @@
 node{
     try{
-        notifyBuild('STARTED')
+        notifyBuild('NEW BUILT INITIATED')
 
         stage('Initialize'){
             def dockerHome = '/usr/local/bin/'
             env.PATH = "${dockerHome}/bin:${env.PATH}"
         }
+
+        notifyBuild('VERIFYING GITHUB CREDENTIALS')
         stage('GIT Check')
         {
            git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/HelloWorld_Custom.git'
@@ -67,7 +69,7 @@ node{
   }
 }
 
-def notifyBuild(String buildStatus = 'STARTED') {
+def notifyBuild(String buildStatus = 'NEW BUILT INITIATED') {
   // build status of null means successful
   sh 'echo buildStatus'
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
@@ -84,6 +86,9 @@ def notifyBuild(String buildStatus = 'STARTED') {
     color = 'YELLOW'
     colorCode = '#FFFF00'
   } else if (buildStatus == 'BUILDING DOCKER IMAGE') {
+    color = 'YELLOW'
+    colorCode = '#FFFF00'
+  } else if (buildStatus == 'VERIFYING GITHUB CREDENTIALS') {
     color = 'YELLOW'
     colorCode = '#FFFF00'
   } else if (buildStatus == 'PUSHING DOCKER IMAGE') {
