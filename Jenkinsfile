@@ -8,10 +8,18 @@ node{
        git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/HelloWorld_Custom.git'
     }
 
-    stage('Initiate Ngrok public endpoint'){
-        sh 'ps -ef | grep ngrok | grep -v grep | awk '{print $2}' | xargs kill'
-        sh 'cd /home/rshah/Desktop/'
-        sh 'ngrok start --all'
+    stage('stop old Ngrok process'){
+        try {
+            sh 'ps -ef | grep ngrok | grep -v grep | awk '{print $2}' | xargs kill'
+        }
+        catch (exc){
+            echo ' No Ngrok  tunnel running'
+            throw
+        }
+    }
+    stage('start new Ngrok tunnel'){
+        sh 'sh /home/rshah/Desktop/ngrok_run_after_boot.sh'
+
     }
 
     stage ('Build Docker Images'){
