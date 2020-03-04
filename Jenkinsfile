@@ -43,9 +43,11 @@ node{
 
     stage('Email')
       steps{
+       emailext body: 'A Test Email', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+/*
        emailext (to: 'ravi.shah@computacenter.com', replyTo: 'ravishah21@gmail.com', subject: "Email Report from - '${env.HelloWorld_Custom}' ",
        body: readFile("target/surefire-reports/emailable-report.html"),
        mimeType: 'text/html');
-
+*/
       }
 }
