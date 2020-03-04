@@ -8,7 +8,7 @@ node{
        git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/HelloWorld_Custom.git'
     }
 
-/*
+/* ***********Work in progress****************
     stage('stop old Ngrok process'){
         try {
             sh label: '', script: 'ps -ef | grep ngrok | grep -v grep | awk \'{print $2}\' | xargs kill'
@@ -20,7 +20,7 @@ node{
     stage('start new Ngrok tunnel'){
         sh label: '', script: './ngrok_run_after_boot.sh'
     }
-*/
+***********Work in progress**************** */
 
     stage ('Build Docker Images'){
         sh 'echo $PATH'
@@ -40,4 +40,12 @@ node{
     stage ('add new container application'){
       sh 'docker run --name helloworld_custom -d --publish 8082:5000  ravishah21/helloworld_custom:v1.0'
     }
+
+    stage('Email')
+      steps{
+       emailext (to: 'ravi.shah@computacenter.com', replyTo: 'ravishah21@gmail.com', subject: "Email
+       Report from - '${env.HelloWorld_Custom}' ", body: readFile("target/surefire-reports/emailable-report.html"),
+       mimeType: 'text/html');
+
+      }
 }
