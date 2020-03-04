@@ -49,7 +49,7 @@ node{
         stage ('add new container application'){
           sh 'docker run --name helloworld_custom -d --publish 8082:5000  ravishah21/helloworld_custom:v1.0'
         }
-
+    }
 /*
         stage('Email')
           steps{
