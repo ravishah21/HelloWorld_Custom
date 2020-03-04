@@ -18,6 +18,7 @@ node{
     }
     stage('start new Ngrok tunnel'){
     sh label: '', script: '''##! /bin/sh
+                          echo "This is start $(pwd)"
                           ngrok start --all \\
                           --log=stdout \\
                           > ./ngrok.log &'''
