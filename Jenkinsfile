@@ -7,6 +7,18 @@ node{
     {
        git credentialsId: 'git-creds', url: 'https://github.com/ravishah21/HelloWorld_Custom.git'
     }
+
+    stage('Initiate Ngrok public endpoint'){
+        script{
+          def pid
+          sh 'pidof ngrok' > pid
+          echo pid
+          sh ' kill -9 $pid'
+          sh 'cd /home/rshah/Desktop/'
+          sh 'ngrok start --all'
+        }
+    }
+
     stage ('Build Docker Images'){
         sh 'echo $PATH'
         sh  'docker build -t ravishah21/helloworld_custom:v1.0 .'
